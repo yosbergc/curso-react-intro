@@ -1,17 +1,18 @@
 .single-todo {
     width: 100%;
     max-width: 350px;
-    background-color: rgb(218, 196, 255);
+    background-color: rgb(255, 255, 255);
     border-radius: 5px;
     position: relative;
     transition: 0.3s ease-in-out;
     align-items: center;
     justify-content: space-between;
     padding: 0px 20px;
+    box-shadow: 1px 2px rgb(195, 195, 195);
 }
 .single-todo:hover {
     cursor: pointer;
-    background-color: rgb(234, 234, 234);
+    background-color: rgb(231, 231, 231);
 }
 p {
     margin-left: 10px;
