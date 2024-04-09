@@ -12,3 +12,6 @@ input {
     padding: 5px 10px;
     font-size: 1rem;
 }
+input:focus {
+    outline-color: rgb(141, 141, 255);
+}

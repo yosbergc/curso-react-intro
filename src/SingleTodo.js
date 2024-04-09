@@ -1,12 +1,12 @@
 import './SingleTodo.css'
-import close from  './close.png'
-import check from './check.png'
+import { CloseComponent } from './CloseComponent';
+import { CheckComponent } from './CheckComponent';
 function SingleTodo(props) {
     let {terminado, texto} = props;
-    return (<section className='single-todo'>
-        <img src={check} alt="Check icon"/>
+    return (<section className={`single-todo ${terminado ? "todo-done" : "todo-incompleted"}`}>
+        <CheckComponent completed={terminado}/>
         <p>{texto}</p>
-        <img src={close} alt="Close Icon" className='closeIcon'/>
+        <CloseComponent completed={terminado}/>
     </section>)
 }
 export {SingleTodo};

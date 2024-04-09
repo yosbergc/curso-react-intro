@@ -12,10 +12,17 @@
 }
 .single-todo:hover {
     cursor: pointer;
+}
+.todo-incompleted:hover {
     background-color: rgb(231, 231, 231);
 }
 p {
     margin-left: 10px;
     width: 100%;
     text-align: left;
+}
+.todo-done {
+    background-color: black;
+    color: white;
+    text-decoration: line-through;
 }
