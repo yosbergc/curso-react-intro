@@ -3,3 +3,16 @@
   flex-direction: column;
   padding: 20px;
 }
+.add-section {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 1200px) {
+  #root {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+    height: calc(100vh - 40px);
+  }
+}

@@ -14,8 +14,10 @@ let arrayPorDefecto = [
 ];
 function App() {
     return (<React.Fragment>
+        <section className='add-section'>
         <TodoCounter total={2} completed={1} />
         <AddTodo/>
+        </section>
         <TodoList>
             {arrayPorDefecto.map(elemento => (
             <SingleTodo

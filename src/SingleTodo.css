@@ -1,20 +1,20 @@
 .single-todo {
     width: 100%;
-    max-width: 620px;
-    text-align: center;
+    max-width: 350px;
     background-color: rgb(218, 196, 255);
     border-radius: 5px;
-    font-weight: 600;
     position: relative;
     transition: 0.3s ease-in-out;
-}
-.deleteSingleTodo {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
 }
 .single-todo:hover {
     cursor: pointer;
-    background-color: black;
-    color: white;
+    background-color: rgb(234, 234, 234);
+}
+p {
+    margin-left: 10px;
+    width: 100%;
+    text-align: left;
 }
