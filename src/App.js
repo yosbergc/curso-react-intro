@@ -1,25 +1,31 @@
-import logo from './platzi.webp';
-import './App.css';
-
+import { TodoCounter } from './TodoCounter';
+import { AddTodo } from './AddTodo';
+import { TodoList } from './TodoList';
+import { SingleTodo } from './SingleTodo';
+import { AddNewTodo } from './AddNewTodo';
+import React from 'react';
+import './App.css'
+let arrayPorDefecto = [
+    {texto: "Hacer comida con Verónica", terminado: false},
+    {texto: "Aprender React", terminado: false},
+    {texto: "Dormir", terminado: false},
+    {texto: "Tomar café", terminado: true},
+    {texto: "Cargar mi celular", terminado: false},
+];
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edita el archivo <code>src/App.js</code> y guarda para recargar.
-        </p>
-        <a
-          className="App-link"
-          href="https://platzi.com/reactjs"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (<React.Fragment>
+        <TodoCounter total={2} completed={1} />
+        <AddTodo/>
+        <TodoList>
+            {arrayPorDefecto.map(elemento => (
+            <SingleTodo
+            texto={elemento.texto}
+            terminado={elemento.terminado}
+            key={elemento.texto}/>)
+            )}
+        </TodoList>
+        <AddNewTodo/>
+    </React.Fragment>)
 }
 
-export default App;
+export {App};
