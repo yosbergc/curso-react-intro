@@ -18,7 +18,12 @@ function App() {
     let totalCompleted = todoSingle.filter(single => (single.terminado)).length;
     let totalSingle = todoSingle.length;
     let todoFilter = todoSingle.filter(todo => todo.texto.toLowerCase().includes(AddTodoState.toLowerCase()));
-
+    function completeTodo(text) {
+        let newTodoList = [...todoSingle];
+        let item = newTodoList.findIndex(item => item.texto === text)
+        newTodoList[item].terminado = !newTodoList[item].terminado;
+        setTodosSingle(newTodoList)
+    }
     return (<React.Fragment>
         <section className='add-section'>
         <TodoCounter
@@ -36,7 +41,9 @@ function App() {
             texto={elemento.texto}
             terminado={elemento.terminado}
             key={elemento.texto}
-            deleteTodo={setTodosSingle}/>)
+            onComplete={() => {
+                completeTodo(elemento.texto)
+            }}/>)
             )}
         </TodoList>
         <AddNewTodo/>
