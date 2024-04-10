@@ -13,17 +13,30 @@ let arrayPorDefecto = [
     {texto: "Cargar mi celular", terminado: false},
 ];
 function App() {
+    let [todoSingle, setTodosSingle] = React.useState(arrayPorDefecto);
+    let [AddTodoState, setAddTodoState] = React.useState('');
+    let totalCompleted = todoSingle.filter(single => (single.terminado)).length;
+    let totalSingle = todoSingle.length;
+    let todoFilter = todoSingle.filter(todo => todo.texto.toLowerCase().includes(AddTodoState.toLowerCase()));
+
     return (<React.Fragment>
         <section className='add-section'>
-        <TodoCounter total={2} completed={1} />
-        <AddTodo/>
+        <TodoCounter
+            total={totalSingle}
+            completed={totalCompleted}
+        />
+        <AddTodo 
+            valorBusqueda={AddTodoState}
+            setValorBusqueda={setAddTodoState}
+        />
         </section>
         <TodoList>
-            {arrayPorDefecto.map(elemento => (
+            {todoFilter.map(elemento => (
             <SingleTodo
             texto={elemento.texto}
             terminado={elemento.terminado}
-            key={elemento.texto}/>)
+            key={elemento.texto}
+            deleteTodo={setTodosSingle}/>)
             )}
         </TodoList>
         <AddNewTodo/>

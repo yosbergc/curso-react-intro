@@ -1,7 +1,15 @@
+import React from 'react';
 import './addtodo.css'
-function AddTodo() {
+
+function AddTodo(props) {
+    let {valorBusqueda, setValorBusqueda} = props;
     return (<section>
-        <input type="text" placeholder="Filtra tus tareas"></input>
+        <input type="text"
+        placeholder="Filtra tus tareas"
+        onChange={(e) => {
+            setValorBusqueda(e.target.value);
+        }}
+        value={valorBusqueda}></input>
     </section>)
 }
 export {AddTodo};
