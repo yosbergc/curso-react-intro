@@ -1,6 +1,6 @@
 import './AddNewTodo.css'
 import Task from './task.png';
-function AddNewTodo() {
+function AddTodoBtn() {
     return (<button onClick={(e) => {
         console.log(e)
     }}>
@@ -8,4 +8,4 @@ function AddNewTodo() {
         Añadir una tarea</button>)
 }
 
-export {AddNewTodo};
+export {AddTodoBtn};
