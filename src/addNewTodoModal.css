@@ -1,0 +1,46 @@
+.modal {
+    padding: 20px;
+    width: calc(100% - 40px);
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 5px;
+    border: 1px solid rgb(219, 219, 219);
+    display: block;
+    max-width: 300px;
+    z-index: 3;
+}
+label {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    color: white;
+    background-color: black;
+}
+button:hover {
+    cursor: pointer;
+}
+.closeModal {
+    text-align: right;
+    position: absolute;
+    z-index: 5;
+    right: 10px;
+    top: 0px;
+}
+.closeModal:hover {
+    cursor: pointer
+}
+.hidden {
+    display: none;
+}

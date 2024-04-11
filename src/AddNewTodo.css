@@ -1,4 +1,4 @@
-button {
+.addBtnShowModal {
     width: fit-content;
     justify-self: center;
     margin: 0 auto;
@@ -17,7 +17,7 @@ button {
     font-family: 'Geist Variable';
     border-radius: 10px;
 }
-button:hover {
+.addBtnShowModal:hover {
     background-color: rgb(31, 31, 31);
     cursor: pointer;
 }

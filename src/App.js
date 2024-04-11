@@ -3,6 +3,7 @@ import { AddTodo } from './AddTodo';
 import { TodoList } from './TodoList';
 import { SingleTodo } from './SingleTodo';
 import { AddTodoBtn } from './AddTodoBtn';
+import { AddNewTodoModal } from './AddNewTodoModal';
 import React from 'react';
 import './App.css'
 let arrayPorDefecto = [
@@ -16,11 +17,16 @@ let arrayPorDefecto = [
 function App() {
     let [todoSingle, setTodosSingle] = React.useState(arrayPorDefecto);
     let [AddTodoState, setAddTodoState] = React.useState('');
-
+    let [modalAddTodo, setModalAddTodo] = React.useState(false)
     let totalCompleted = todoSingle.filter(single => (single.terminado)).length;
     let totalSingle = todoSingle.length;
 
     let todoFilter = todoSingle.filter(todo => todo.texto.toLowerCase().includes(AddTodoState.toLowerCase()));
+
+    function showModal() {
+        let newState = !modalAddTodo;
+        setModalAddTodo(newState)
+    }
 
     function completedTodo(text) {
         let newTodoList = [...todoSingle];
@@ -35,7 +41,7 @@ function App() {
         newTodoList.splice(item, 1)
         setTodosSingle(newTodoList);
     }
-    
+
     return (<React.Fragment>
         <section className='add-section'>
         <TodoCounter
@@ -62,7 +68,17 @@ function App() {
             />)
             )}
         </TodoList>
-        <AddTodoBtn/>
+        <AddTodoBtn
+            onClicked={() => {
+                showModal()
+            }}
+        />
+        <AddNewTodoModal
+            currentState={modalAddTodo}
+            onClose={() => {
+                showModal()
+            }}
+        />
     </React.Fragment>)
 }
 

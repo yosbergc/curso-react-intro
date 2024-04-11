@@ -1,9 +1,9 @@
 import './AddNewTodo.css'
 import Task from './task.png';
-function AddTodoBtn() {
-    return (<button onClick={(e) => {
-        console.log(e)
-    }}>
+
+function AddTodoBtn({onClicked}) {
+    return (<button onClick={onClicked}
+    className='addBtnShowModal'>
         <img src={Task} alt="Task Icon"/>
         Añadir una tarea</button>)
 }
