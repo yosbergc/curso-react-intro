@@ -6,21 +6,23 @@ import { AddTodoBtn } from './AddTodoBtn';
 import { AddNewTodoModal } from './AddNewTodoModal';
 import React from 'react';
 import './App.css'
-let arrayPorDefecto = [
-    {texto: "Hacer comida con Verónica", terminado: false},
-    {texto: "Aprender React", terminado: false},
-    {texto: "Dormir", terminado: false},
-    {texto: "Tomar café", terminado: true},
-    {texto: "Cargar mi celular", terminado: false},
-    {texto: "Dar comida a la chiquita", terminado: false},
-];
+
 function App() {
-    let [todoSingle, setTodosSingle] = React.useState(arrayPorDefecto);
+    // Agregamos la BD en localStorage
+    const taskDB = localStorage.getItem('TasksDB');
+    let taskState;
+    if (!taskDB) {
+        localStorage.setItem('TasksDB', JSON.stringify([]));
+        taskState = JSON.parse(taskDB)
+    } else {
+        taskState = JSON.parse(taskDB)
+    }
+    // Nos encargamos de los estados y los estados compuestos.
+    let [todoSingle, setTodosSingle] = React.useState(taskState);
     let [AddTodoState, setAddTodoState] = React.useState('');
     let [modalAddTodo, setModalAddTodo] = React.useState(false)
     let totalCompleted = todoSingle.filter(single => (single.terminado)).length;
     let totalSingle = todoSingle.length;
-
     let todoFilter = todoSingle.filter(todo => todo.texto.toLowerCase().includes(AddTodoState.toLowerCase()));
 
     function showModal() {
@@ -33,15 +35,15 @@ function App() {
         let item = newTodoList.findIndex(item => item.texto === text)
         newTodoList[item].terminado = !newTodoList[item].terminado;
         setTodosSingle(newTodoList)
+        localStorage.setItem('TasksDB', JSON.stringify(newTodoList))
     }
-
     function deleteTodo(text) {
         let newTodoList = [...todoSingle];
         let item = todoSingle.findIndex(item => item.texto === text);
         newTodoList.splice(item, 1)
         setTodosSingle(newTodoList);
+        localStorage.setItem('TasksDB', JSON.stringify(newTodoList))
     }
-
     return (<React.Fragment>
         <section className='add-section'>
         <TodoCounter
