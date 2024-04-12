@@ -1,6 +1,6 @@
 import './SingleTodo.css'
-import { CloseComponent } from './CloseComponent';
-import { CheckComponent } from './CheckComponent';
+import { CloseComponent } from '../CloseComponent';
+import { CheckComponent } from '../CheckComponent';
 function SingleTodo(props) {
     let {terminado, texto, onComplete, onDelete} = props;
     return (<section className={`single-todo ${terminado ? "todo-done" : "todo-incompleted"}`}>

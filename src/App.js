@@ -1,8 +1,8 @@
-import { TodoCounter } from './TodoCounter';
+import { TodoCounter } from './components/TodoCounter';
 import { AddTodo } from './components/FilterTodo';
-import { TodoList } from './TodoList';
-import { SingleTodo } from './SingleTodo';
-import { AddTodoBtn } from './AddTodoBtn';
+import { TodoList } from './components/TodoList';
+import { SingleTodo } from './components/SingleTodo';
+import { AddTodoBtn } from './components/AddTodoBtn';
 import { AddNewTodoModal } from './components/AddNewTodoModal';
 import React from 'react';
 import './App.css'
