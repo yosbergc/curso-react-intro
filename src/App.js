@@ -7,8 +7,7 @@ import { AddNewTodoModal } from './AddNewTodoModal';
 import React from 'react';
 import './App.css'
 
-function App() {
-    // Agregamos la BD en localStorage
+function useLocalStorage() {
     const taskDB = localStorage.getItem('TasksDB');
     let taskState;
     if (!taskDB) {
@@ -17,8 +16,18 @@ function App() {
     } else {
         taskState = JSON.parse(taskDB)
     }
+    let [item, setItem] = React.useState(taskState)
+
+    function updateTodoDB(newTodoList) {
+        setItem(newTodoList)
+        localStorage.setItem('TasksDB', JSON.stringify(newTodoList))
+    }
+    return [item, updateTodoDB];
+}
+function App() {
+    
     // Nos encargamos de los estados y los estados compuestos.
-    let [todoSingle, setTodosSingle] = React.useState(taskState);
+    let [todoSingle, updateTodoDB] = useLocalStorage()
     let [AddTodoState, setAddTodoState] = React.useState('');
     let [modalAddTodo, setModalAddTodo] = React.useState(false)
     let totalCompleted = todoSingle.filter(single => (single.terminado)).length;
@@ -29,20 +38,17 @@ function App() {
         let newState = !modalAddTodo;
         setModalAddTodo(newState)
     }
-
     function completedTodo(text) {
         let newTodoList = [...todoSingle];
         let item = newTodoList.findIndex(item => item.texto === text)
         newTodoList[item].terminado = !newTodoList[item].terminado;
-        setTodosSingle(newTodoList)
-        localStorage.setItem('TasksDB', JSON.stringify(newTodoList))
+        updateTodoDB(newTodoList)
     }
     function deleteTodo(text) {
         let newTodoList = [...todoSingle];
         let item = todoSingle.findIndex(item => item.texto === text);
         newTodoList.splice(item, 1)
-        setTodosSingle(newTodoList);
-        localStorage.setItem('TasksDB', JSON.stringify(newTodoList))
+        updateTodoDB(newTodoList)
     }
     return (<React.Fragment>
         <section className='add-section'>
