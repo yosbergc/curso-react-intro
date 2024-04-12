@@ -1,9 +1,9 @@
 import { TodoCounter } from './TodoCounter';
-import { AddTodo } from './AddTodo';
+import { AddTodo } from './components/FilterTodo';
 import { TodoList } from './TodoList';
 import { SingleTodo } from './SingleTodo';
 import { AddTodoBtn } from './AddTodoBtn';
-import { AddNewTodoModal } from './AddNewTodoModal';
+import { AddNewTodoModal } from './components/AddNewTodoModal';
 import React from 'react';
 import './App.css'
 
@@ -25,11 +25,10 @@ function useLocalStorage() {
     return [item, updateTodoDB];
 }
 function App() {
-    
-    // Nos encargamos de los estados y los estados compuestos.
     let [todoSingle, updateTodoDB] = useLocalStorage()
     let [AddTodoState, setAddTodoState] = React.useState('');
-    let [modalAddTodo, setModalAddTodo] = React.useState(false)
+    let [modalAddTodo, setModalAddTodo] = React.useState(false);
+    let [newTodoState, setNewTodoState] = React.useState('');
     let totalCompleted = todoSingle.filter(single => (single.terminado)).length;
     let totalSingle = todoSingle.length;
     let todoFilter = todoSingle.filter(todo => todo.texto.toLowerCase().includes(AddTodoState.toLowerCase()));
@@ -49,6 +48,13 @@ function App() {
         let item = todoSingle.findIndex(item => item.texto === text);
         newTodoList.splice(item, 1)
         updateTodoDB(newTodoList)
+    }
+    function onAdd(text) {
+        let newTodoList = [...todoSingle];
+        let item = {texto: text, completado: false};
+        newTodoList.push(item);
+        updateTodoDB(newTodoList)
+        showModal()
     }
     return (<React.Fragment>
         <section className='add-section'>
@@ -81,12 +87,15 @@ function App() {
                 showModal()
             }}
         />
-        <AddNewTodoModal
-            currentState={modalAddTodo}
-            onClose={() => {
+        {modalAddTodo && <AddNewTodoModal
+            onToggle={() => {
                 showModal()
             }}
-        />
+            onAdd={() => {
+                onAdd(newTodoState)
+            }}
+            newTodoInputChangeState={setNewTodoState}
+        />}
     </React.Fragment>)
 }
 

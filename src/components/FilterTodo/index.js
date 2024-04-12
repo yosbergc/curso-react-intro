@@ -1,5 +1,5 @@
 import React from 'react';
-import './addtodo.css'
+import './filterTodo.css'
 
 function AddTodo(props) {
     let {valorBusqueda, setValorBusqueda} = props;
