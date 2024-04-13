@@ -1,0 +1,14 @@
+.loadingContainer {
+    padding: 20px;
+    left: calc(50% - 28px);
+    top: 50%;
+    animation: 2s linear infinite rotate;
+    border-radius: 50%;
+    border: 8px solid rgb(68, 6, 123);
+    border-left-color: transparent;
+}
+@keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+}
