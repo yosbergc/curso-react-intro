@@ -10,7 +10,7 @@ function TodoCounter(props) {
         mensaje = `Has completado ${completed} de ${total} tareas`
     }
     return (<section>
-        <h1>{mensaje}</h1>
+        <h1 className='todoCounterH1'>{mensaje}</h1>
     </section>)
 }
 export {TodoCounter};

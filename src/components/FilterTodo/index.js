@@ -3,7 +3,7 @@ import './filterTodo.css'
 
 function AddTodo(props) {
     let {valorBusqueda, setValorBusqueda} = props;
-    return (<section>
+    return (<section className='filterSection'>
         <input type="text"
         placeholder="Filtra tus tareas"
         onChange={(e) => {

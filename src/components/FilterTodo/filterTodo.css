@@ -2,6 +2,9 @@ section {
     display: flex;
     justify-content: center;
 }
+.filterSection {
+    margin-top: 20px;
+}
 input {
     height: 40px;
     width: 100%;
@@ -14,4 +17,9 @@ input {
 }
 input:focus {
     outline-color: rgb(141, 141, 255);
+}
+@media (min-width: 1200px) {
+    .filterSection {
+        margin-top: 0px;
+    }
 }

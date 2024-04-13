@@ -34,7 +34,7 @@ img {
     position: fixed;
     right: 220px;
     bottom: 30px;
-    animation: inicial 1s infinite linear;
+    animation: inicial 2s infinite linear;
 }
 @keyframes inicial {
     0% {

@@ -26,7 +26,7 @@ function useLocalStorage(initialValue) {
                 taskState = JSON.parse(taskDB)
                 setItem(taskState)
             }
-            setLoading(false);
+            setLoading(false)
         } catch (error) {
             setLoading(false);
             setError(true);
@@ -90,7 +90,7 @@ function App() {
             {loading && <LoadingSpinner/>}
             {error && <p>Hay un error</p>}
             {(!loading && todoFilter.length === 0) && <AddYourFirstTodo/>}
-            {todoFilter.map(elemento => (
+            {!loading && todoFilter.map(elemento => (
             <SingleTodo
             texto={elemento.texto}
             terminado={elemento.terminado}
