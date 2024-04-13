@@ -25,3 +25,25 @@ img {
     width: 25px;
     height: 25px;
 }
+.addNewTodoBtnContainer {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+.rightArrowBtn {
+    position: fixed;
+    right: 220px;
+    bottom: 30px;
+    animation: inicial 1s infinite linear;
+}
+@keyframes inicial {
+    0% {
+        transform: translate(0px);
+    }
+    50% {
+        transform: translate(10px);
+    }
+    100% {
+        transform: translate(0px);
+    }
+}

@@ -5,6 +5,7 @@ import { SingleTodo } from './components/SingleTodo';
 import { AddTodoBtn } from './components/AddTodoBtn';
 import { AddNewTodoModal } from './components/AddNewTodoModal';
 import { LoadingSpinner } from './components/LoadingSpinner';
+import { AddYourFirstTodo } from './components/AddYourFirstTodo';
 import React from 'react';
 import './App.css'
 
@@ -14,17 +15,22 @@ function useLocalStorage(initialValue) {
     let [error, setError] = React.useState(false);
 
     React.useEffect(() => {
-        const taskDB = localStorage.getItem('TasksDB');
-        let taskState;
+        try {
+            const taskDB = localStorage.getItem('TasksDB');
+            let taskState;
 
-        if (!taskDB) {
-            localStorage.setItem('TasksDB', JSON.stringify([]));
-            taskState = JSON.parse(taskDB)
-        } else {
-            taskState = JSON.parse(taskDB)
+            if (!taskDB) {
+                localStorage.setItem('TasksDB', JSON.stringify(initialValue));
+                taskState = JSON.parse(taskDB)
+            } else {
+                taskState = JSON.parse(taskDB)
+                setItem(taskState)
+            }
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            setError(true);
         }
-        setItem(taskState)
-        // setLoading(false);
     }, [])
 
     function updateTodoDB(newTodoList) {
@@ -83,7 +89,7 @@ function App() {
         <TodoList>
             {loading && <LoadingSpinner/>}
             {error && <p>Hay un error</p>}
-            {(!loading && todoFilter.length === 0) && <p>Agrega tu tarea</p>}
+            {(!loading && todoFilter.length === 0) && <AddYourFirstTodo/>}
             {todoFilter.map(elemento => (
             <SingleTodo
             texto={elemento.texto}
@@ -99,6 +105,7 @@ function App() {
             )}
         </TodoList>
         <AddTodoBtn
+            isNotTodos={!loading && todoFilter.length === 0}
             onClicked={() => {
                 showModal()
             }}
