@@ -3,10 +3,11 @@ import { AddTodo } from '../FilterTodo';
 import { TodoList } from '../TodoList';
 import { SingleTodo } from '../SingleTodo';
 import { AddTodoBtn } from '../AddTodoBtn';
-import { AddNewTodoModal } from '../AddNewTodoModal';
+import { Modal } from '../Modal';
 import { LoadingSpinner } from '../LoadingSpinner';
 import { AddYourFirstTodo } from '../AddYourFirstTodo';
 import { AppContext } from '../AppContext/index';
+import { AddTodoForm } from '../AddTodoForm';
 import React, { useContext } from 'react';
 
 function AppUI() {
@@ -40,15 +41,10 @@ function AppUI() {
     onClicked={() => {
         data.showModal()
     }}/>
-    {data.modalAddTodo && <AddNewTodoModal
-                    onToggle={() => {
-                        data.showModal()
-                    }}
-                    onAdd={() => {
-                        data.onAdd(data.newTodoState)
-                    }}
-                    newTodoInputChangeState={data.setNewTodoState}
-                />}
+    {data.modalAddTodo && <Modal>
+        <AddTodoForm/>
+    </Modal>
+    }
 </React.Fragment>)
 }
 export {AppUI}
