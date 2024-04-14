@@ -1,15 +1,16 @@
 import React from 'react';
 import './filterTodo.css'
+import { AppContext } from '../AppContext';
 
-function AddTodo(props) {
-    let {valorBusqueda, setValorBusqueda} = props;
+function AddTodo() {
+    let data = React.useContext(AppContext)
     return (<section className='filterSection'>
         <input type="text"
         placeholder="Filtra tus tareas"
         onChange={(e) => {
-            setValorBusqueda(e.target.value);
+            data.setAddTodoState(e.target.value);
         }}
-        value={valorBusqueda}></input>
+        value={data.AddTodoState}></input>
     </section>)
 }
 export {AddTodo};
