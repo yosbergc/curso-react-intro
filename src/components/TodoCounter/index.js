@@ -1,13 +1,15 @@
 import './TodoCounter.css'
-function TodoCounter(props) {
-    let {total, completed} = props;
+import { AppContext } from '../AppContext/index'
+import React, { useContext } from 'react'
+function TodoCounter() {
+    let data = useContext(AppContext);
     let mensaje;
-    if (total === completed && completed !== 0 && total !== 0) {
+    if (data.totalCompleted === data.totalSingle && data.totalCompleted !== 0 && data.totalSingle !== 0) {
         mensaje = "Felicitaciones, has completado todas las tareas"
-    } else if (total === 0 && completed === 0) {
+    } else if (data.totalSingle === 0 && data.totalCompleted === 0) {
         mensaje = "No hay tareas"
     } else {
-        mensaje = `Has completado ${completed} de ${total} tareas`
+        mensaje = `Has completado ${data.totalCompleted} de ${data.totalSingle} tareas`
     }
     return (<section>
         <h1 className='todoCounterH1'>{mensaje}</h1>
